@@ -20,6 +20,7 @@ target/
 *.ipr
 /backend/src/main/resources/application.properties
 /frontend/node_modules
+/frontend/.angular/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -32,3 +33,4 @@ build/
 
 ### VS Code ###
 .vscode/
+
