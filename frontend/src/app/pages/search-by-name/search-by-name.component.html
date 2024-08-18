@@ -1,0 +1,44 @@
+<p>search-by-name works!</p>
+
+<div class="search-fom">
+    <mat-form-field appearance="outline" class="searchInput">
+        <mat-label>enter keyword to search</mat-label>
+        <input matInput [(ngModel)]="name">
+        <button mat-button matSuffix class="primary" (click)="searchByName()" ><mat-icon>search</mat-icon></button>
+    </mat-form-field>
+</div>
+
+@if (result.length === 0) {
+    <div class="empty">
+        <span>Nothing to see here</span>
+    </div>
+}
+
+@if (result) {
+    @for (post of result; track $index) {
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{post.name}}</mat-card-title>
+                <mat-card-subtitle>Posted By: {{post.postedBy}} | Poseted on: {{ post.date | date:'medium'}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-grid-list cols="5">
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <img mat-card-image [src]="post.img" alt="card image" class="post-img">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <mat-card-content>
+                        {{post.content.length > 600 ? post.content.substr(0,600) + '...' : post.content}}
+                    </mat-card-content>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+        <hr>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">{{post.likeCount}} <mat-icon>favorite</mat-icon></button>
+            <button mat-raised-button color="primary" style="margin-left: 5px;">{{post.viewCount}}<mat-icon>remove_red_eye</mat-icon></button>
+            <button mat-raised-button color="primary" style="margin-left: 5px;" routerLink="/view-post/{{post.id}}">View Post</button>
+        </mat-card-actions>
+    }
+}

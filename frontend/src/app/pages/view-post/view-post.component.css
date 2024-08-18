@@ -1,0 +1,37 @@
+card-container {
+    /* margin: 16px;
+    max-width: 60%; */
+    padding-bottom: 30px;
+    width: 50%;
+    margin: auto;
+}
+
+mat-card {
+    padding: 10px;
+}
+
+.example-header-image {
+    /* background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg"); */
+    background-image: url("https://yt3.googleusercontent.com/y4J_Fs5ksRlxx6_LzT1VKxVqH_T8Vyn_RN_YYgLJhuMzBS5qxTgm7NlEcMkQd3hgCpfWtYcEUg=s900-c-k-c0x00ffffff-no-rj");
+    background-size: cover;
+}
+
+mat-card-content {
+    margin-top: 10px;
+}
+
+mat-card-footer {
+    margin-left: 20px;
+}
+
+.img {
+    object-fit: cover;
+}
+
+.comment-card {
+    margin-top: 20px;
+}
+
+ mat-form-field {
+    width: 100%;
+ }
