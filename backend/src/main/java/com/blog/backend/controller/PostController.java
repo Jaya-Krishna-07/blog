@@ -65,10 +65,10 @@ public class PostController {
         }
     }
 
-    @GetMapping("/search/{name}")
-    public ResponseEntity<?> searchByName(@PathVariable String name){
+    @GetMapping("/search/{query}")
+    public ResponseEntity<?> searchByName(@PathVariable String query){
         try {
-            return ResponseEntity.ok(postService.searchByName(name));
+            return ResponseEntity.ok(postService.searchByName(query));
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
