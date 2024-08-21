@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { IncomingPost } from '../../models/incoming-post.model';
 
 @Component({
   selector: 'app-view-all',
@@ -18,7 +19,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ViewAllComponent {
 
-  allPosts: any;
+  allPosts: IncomingPost[] = [];
 
   constructor(private postService: PostService, private snackBar: MatSnackBar){this.getAllPosts();}
 
