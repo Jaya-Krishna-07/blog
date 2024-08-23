@@ -3,10 +3,13 @@ package com.blog.backend.controller;
 import com.blog.backend.entity.Post;
 import com.blog.backend.service.PostService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,7 +26,7 @@ public class PostController {
 
 
     @PostMapping("/createPost")
-    public ResponseEntity<?> createPost(@RequestBody Post post){
+    public ResponseEntity<?> createPost(@Valid @RequestBody Post post){
         try {
             Post createdPost = postService.savePost(post);
             log.info("created post");
@@ -74,4 +77,14 @@ public class PostController {
         }
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException e){
+        Map<String, String> errors = new HashMap<>();
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+            String fileName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fileName, errorMessage);
+        });
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
 }
